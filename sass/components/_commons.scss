@@ -55,7 +55,7 @@ footer {
 
 .gamebox{
     margin: auto;
-    height: calc(100vh - 130px);
+    height: calc(100vh - (100vh - 100%) - 130px);
     max-width: 1000px;
     padding: 20px;
     gap: $card-gap;
