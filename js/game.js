@@ -1,6 +1,8 @@
 let cardsNumber = 16;
 let moveCounter = 0;
 let cardTemp = [];
+let statusTemp = {};
+let colorTemp = {};
 
 const gameBox = document.querySelector("[js-gamebox]");
 
@@ -34,14 +36,19 @@ const createCards = () => {
         const newCard = document.createElement("div");
         newCard.classList.add("card");
         newCard.id = `card-${i}`;
+        statusTemp[`${newCard.id}`] = "back";
         newCard.setAttribute("data-color", colorPairShuffled[i]);
+       
         const newCardWrapper = document.createElement("div");
         newCardWrapper.classList.add("card__wrapper");
+        
         const newCardBack = document.createElement("div");
         newCardBack.classList.add("card__back");
+        
         const newCardFront = document.createElement("div");
         newCardFront.classList.add("card__front");
         newCardFront.style.backgroundColor = colorPairShuffled[i];
+        
         newCardWrapper.append(newCardBack, newCardFront);
         newCard.append(newCardWrapper);
         gameBox.append(newCard);
@@ -67,6 +74,7 @@ gameBox.addEventListener("click", (e) => {
         e.target.firstElementChild.classList.toggle("flip"); 
         cardTemp.push({id: `#${e.target.id}`, bgCol: e.target.getAttribute("data-color")});
         moveCounter++;
+        statusTemp[`${e.target.id}`] = "front";
         
         if (moveCounter === 2) {
             
@@ -79,7 +87,7 @@ gameBox.addEventListener("click", (e) => {
                     item2.classList.add("no-visible");
                     moveCounter = 0;
                     cardTemp = [];
-                },2000)
+                },1500)
             } else {
                 setTimeout(()=>{
                     item1.classList.toggle("flip");
@@ -88,7 +96,7 @@ gameBox.addEventListener("click", (e) => {
                     item2.firstElementChild.classList.toggle("flip");
                     moveCounter = 0;
                     cardTemp = [];
-                },2000)
+                },1500)
                
             }
 
