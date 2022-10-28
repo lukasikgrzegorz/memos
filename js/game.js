@@ -1,3 +1,6 @@
+localStorage.clear();
+
+
 const refs = {
     cardsNumber : 16,
     moveCounter : 0,
