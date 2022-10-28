@@ -23,7 +23,7 @@ body{
     background-color: #e0e0eb;
     color: #50507c;
     font-size: 20px;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Oxygen', sans-serif;
     text-transform: uppercase;
     height: 100vh;
     height: calc(var(--vh, 1vh) * 100);
@@ -54,9 +54,72 @@ body{
     position: absolute;
     top: 0;
     left: 0;
-    display: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
 
+.logo{
+    font-family: 'Rubik Mono One', sans-serif;
+    display: flex;
+    flex-direction: column;
+    font-size: 15vmin;
+    letter-spacing: -0.05em;
+    line-height: 0.8em;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25vmin;
+}
+
+.logo__line{
+    display: flex;
+}
+
+.logo__line--second{
+    color:#7876b8;
+    letter-spacing: -0.029em;
+}
+
+.logo__decoration{
+    margin-left: 1.5vmin;
+    background-color: currentColor;
+    width: 0.6em;
+    height: 0.71em;
+    border-radius: 2vmin;
+    outline: 0.3vmin white solid;
+    outline-offset: -1vmin;
+    transition: outline-offset 100ms linear;
+
+    &:hover,
+    &:focus{
+        outline-offset: -1.25vmin;
+    }
+}
+
+button{
+    font-family: 'Oxygen', sans-serif;
+    font-weight: 700;
+    font-size: 3vmin;
+    background-color: white;
+    border-color: transparent;
+    padding: 2vmin;
+    border-radius: 1.5vmin;
+    width: 40vmin;
+    color: #3c3c5d;
+    transition: background-color 500ms linear,
+                color 500ms linear;
+
+    &:hover,
+    &:focus{
+        background-color: #7876b8;
+        color: white;
+    }
+}
+
+.no-display{
+    display: none;
+}
 
 .gamebox{
     margin: auto;

@@ -103,7 +103,6 @@ const refs = {
     }
 }
 
-refs.nweGame();
 
 //Main Event Listener
 
@@ -184,3 +183,11 @@ window.addEventListener('resize', () => {
 
 });
     
+
+const startBtn = document.querySelector("[js-start-game]");
+const startScreen = document.querySelector("[js-start-screen]");
+
+startBtn.addEventListener('click', () => {
+    startScreen.classList.add("no-display")  
+    refs.nweGame();
+})
