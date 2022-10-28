@@ -106,11 +106,11 @@ refs.nweGame();
 
 refs.gameBox.addEventListener("click", (e) => {
     
-    if (e.target.classList.contains("card") && refs.cardTemp.length<2){
+    if (e.target.classList.contains("card") && refs.cardTemp.length < 2) {
         
         e.target.classList.toggle("flip");
-        e.target.firstElementChild.classList.toggle("flip"); 
-        refs.cardTemp.push({id: `#${e.target.id}`, bgCol: e.target.getAttribute("data-color")});
+        e.target.firstElementChild.classList.toggle("flip");
+        refs.cardTemp.push({ id: `#${e.target.id}`, bgCol: e.target.getAttribute("data-color") });
         refs.moveCounter++;
         refs.statusTemp[`${e.target.id}`].status = "front";
         refs.tempUpdate();
@@ -121,8 +121,8 @@ refs.gameBox.addEventListener("click", (e) => {
             item1 = document.querySelector(refs.cardTemp[0].id);
             item2 = document.querySelector(refs.cardTemp[1].id);
            
-            if (refs.cardTemp[0].bgCol === refs.cardTemp[1].bgCol && refs.cardTemp[0].id !== refs.cardTemp[1].id ) {   
-                setTimeout(()=>{
+            if (refs.cardTemp[0].bgCol === refs.cardTemp[1].bgCol && refs.cardTemp[0].id !== refs.cardTemp[1].id) {
+                setTimeout(() => {
                     item1.classList.add("no-visible");
                     item2.classList.add("no-visible");
                     refs.statusTemp[`${item1.id}`].status = "clear";
@@ -131,9 +131,9 @@ refs.gameBox.addEventListener("click", (e) => {
                     refs.moveCounter = 0;
                     refs.cardTemp = [];
                     refs.checkWin();
-                },1200)
+                }, 1200)
             } else {
-                setTimeout(()=>{
+                setTimeout(() => {
                     item1.classList.toggle("flip");
                     item1.firstElementChild.classList.toggle("flip");
                     item2.classList.toggle("flip");
@@ -143,7 +143,7 @@ refs.gameBox.addEventListener("click", (e) => {
                     refs.tempUpdate();
                     refs.moveCounter = 0;
                     refs.cardTemp = [];
-                },1200)
+                }, 1200)
                
             }
 
@@ -152,4 +152,26 @@ refs.gameBox.addEventListener("click", (e) => {
     
 })
 
+const checkWindow = () => {
+    if (window.innerWidth > window.innerHeight) {
+    refs.gameBox.classList.add("gamebox--vmin");
+    } else {
+        refs.gameBox.classList.add("gamebox--vmax");
+    } 
+}    
 
+checkWindow();
+
+
+window.addEventListener('resize', () => {
+
+    if(window.innerWidth < window.innerHeight){
+        refs.gameBox.classList.remove("gamebox--vmin"); 
+        refs.gameBox.classList.add("gamebox--vmax");   
+    } else {
+        refs.gameBox.classList.remove("gamebox--vmax"); 
+        refs.gameBox.classList.add("gamebox--vmin");      
+    }
+
+});
+    

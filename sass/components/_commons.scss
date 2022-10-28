@@ -26,20 +26,15 @@ body{
     text-transform: uppercase;
 }
 
-header{
-    max-height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-footer {
-    max-height: 100px;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
+// footer {
+//     max-height: 100px;
+//     margin: auto;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
 
 .inerface__title{
     text-align: center;
@@ -54,13 +49,20 @@ footer {
 
 .gamebox{
     margin: auto;
-    height: 80vh;
-    max-width: 1000px;
-    padding: 20px;
     gap: $card-gap;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+.gamebox--vmin{
+    height: 100vmin;
+    padding: 5vmin;
+}
+
+.gamebox--vmax {
+    height: 100vmax;
+    padding: 5vmax;
 }
 
 
