@@ -156,6 +156,9 @@ refs.gameBox.addEventListener("click", (e) => {
 })
 
 const checkWindow = () => {
+    let vh = window.innerHeight * 0.01;
+    document.body.style.setProperty('--vh', `${vh}px`);
+    
     if (window.innerWidth > window.innerHeight) {
     refs.gameBox.classList.add("gamebox--vmin");
     } else {
