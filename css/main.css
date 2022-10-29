@@ -17,20 +17,20 @@ a {
 body {
   background-color: #e0e0eb;
   color: #50507c;
-  font-size: 20px;
+  font-size: 3vmin;
   font-family: "Oxygen", sans-serif;
-  text-transform: uppercase;
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
 }
 
-.inerface__title {
-  text-align: center;
-  font-size: 50px;
+footer {
+  font-weight: 700;
+  font-size: 4vmin;
 }
-
-.inerface__span {
-  color: #ffffff;
+@media screen and (min-width: 500px) {
+  footer {
+    font-size: 3vmin;
+  }
 }
 
 .start-screen {
@@ -101,22 +101,43 @@ body {
   outline-offset: -1.25vmin;
 }
 
+.button-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 2vmin;
+}
+
 button {
   font-family: "Oxygen", sans-serif;
   font-weight: 700;
-  font-size: 3vmax;
+  font-size: 4vmin;
   background-color: white;
   border-color: transparent;
   padding: 2vmin;
   border-radius: 1.5vmin;
-  width: 40vmin;
+  width: 60vmin;
   color: #3c3c5d;
-  -webkit-transition: background-color 500ms linear, color 500ms linear;
-  transition: background-color 500ms linear, color 500ms linear;
+  -webkit-transition: background-color 200ms linear, color 200ms linear, width 200ms linear, font-size 200ms linear;
+  transition: background-color 200ms linear, color 200ms linear, width 200ms linear, font-size 200ms linear;
+}
+@media screen and (min-width: 500px) {
+  button {
+    width: 50vmin;
+    font-size: 3vmin;
+  }
 }
 button:hover, button:focus {
   background-color: #7876b8;
   color: white;
+}
+button:disabled {
+  background-color: #3c3c5d;
+  color: #7876b8;
 }
 
 .no-display {

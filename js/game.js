@@ -1,4 +1,18 @@
-localStorage.clear();
+const startBtn = document.querySelector("[js-start-game]");
+const startScreen = document.querySelector("[js-start-screen]");
+const continueBtn = document.querySelector("[js-continue-game]");
+const arcadeBtn = document.querySelector("[js-start-arcade]");
+
+startBtn.addEventListener('click', () => {
+    startScreen.classList.add("no-display");  
+    refs.newGame();
+})
+
+continueBtn.addEventListener('click', ()=> {
+    startScreen.classList.add("no-display"); 
+    refs.createCardsFromTemp();
+})
+
 
 
 const refs = {
@@ -59,11 +73,13 @@ const refs = {
     checkLocalTemp(){
         if (localStorage.getItem("gameStatus")) {
             this.statusTemp = JSON.parse(localStorage.getItem("gameStatus"));
+            continueBtn.removeAttribute("disabled");
         }
     },
 
     tempUpdate(){
-        localStorage.setItem("gameStatus", JSON.stringify(this.statusTemp));     
+        localStorage.setItem("gameStatus", JSON.stringify(this.statusTemp)); 
+      
     },
 
     createCardsFromTemp(){ 
@@ -90,18 +106,17 @@ const refs = {
         }
     },  
     
-    nweGame() {
-        this.checkLocalTemp();
-        if (!localStorage.getItem("gameStatus")) {
-            let colorPair = this.createColorPair();
-            colorPair = colorPair.concat(colorPair);
-            let colorPairShuffled = this.shuffleColors(colorPair);
-            this.createCards(colorPairShuffled);
-        } else {
-            this.createCardsFromTemp();
-        } 
+    newGame() {
+        localStorage.clear();
+        let colorPair = this.createColorPair();
+        colorPair = colorPair.concat(colorPair);
+        let colorPairShuffled = this.shuffleColors(colorPair);
+        this.createCards(colorPairShuffled);   
     }
+
 }
+
+refs.checkLocalTemp();
 
 
 //Main Event Listener
@@ -167,7 +182,7 @@ const checkWindow = () => {
 
 checkWindow();
 
-
+    
 window.addEventListener('resize', () => {
 
     let vh = window.innerHeight * 0.01;
@@ -183,11 +198,3 @@ window.addEventListener('resize', () => {
 
 });
     
-
-const startBtn = document.querySelector("[js-start-game]");
-const startScreen = document.querySelector("[js-start-screen]");
-
-startBtn.addEventListener('click', () => {
-    startScreen.classList.add("no-display")  
-    refs.nweGame();
-})
