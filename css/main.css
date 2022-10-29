@@ -63,7 +63,7 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  font-size: 15vmin;
+  font-size: 15vmax;
   letter-spacing: -0.05em;
   line-height: 0.8em;
   -webkit-box-align: center;
@@ -72,7 +72,7 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  gap: 0.25vmin;
+  gap: 0.25vmax;
 }
 
 .logo__line {
@@ -87,13 +87,13 @@ body {
 }
 
 .logo__decoration {
-  margin-left: 1.5vmin;
+  margin-left: 1.5vmax;
   background-color: currentColor;
   width: 0.6em;
   height: 0.71em;
-  border-radius: 2vmin;
+  border-radius: 2vmax;
   outline: 0.3vmin white solid;
-  outline-offset: -1vmin;
+  outline-offset: -1vmax;
   -webkit-transition: outline-offset 100ms linear;
   transition: outline-offset 100ms linear;
 }
@@ -104,12 +104,12 @@ body {
 button {
   font-family: "Oxygen", sans-serif;
   font-weight: 700;
-  font-size: 3vmin;
+  font-size: 3vmax;
   background-color: white;
   border-color: transparent;
-  padding: 2vmin;
+  padding: 2vmax;
   border-radius: 1.5vmin;
-  width: 40vmin;
+  width: 40vmax;
   color: #3c3c5d;
   -webkit-transition: background-color 500ms linear, color 500ms linear;
   transition: background-color 500ms linear, color 500ms linear;
