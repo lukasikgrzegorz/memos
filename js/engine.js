@@ -4,8 +4,7 @@ const engine = {
     moveCounter : 0,
     chosenCard : [],
     stateTemp: {},
-    arcadeMode: false,
-    level: 0,
+    settings:{arcadeMode:false,level:0},
      
     randomColor(){
         return `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, 0)}`;
@@ -49,13 +48,18 @@ const engine = {
             this.stateTemp = JSON.parse(localStorage.getItem("gameStatus"));
             interface.continueBtn.removeAttribute("disabled");
         }
+        if (localStorage.getItem("gameSettings")) {
+            this.settings = JSON.parse(localStorage.getItem("gameSettings"));
+        }
     },
 
     tempUpdate(){
         localStorage.setItem("gameStatus", JSON.stringify(this.stateTemp)); 
+        localStorage.setItem("gameSettings", JSON.stringify(this.settings)); 
     },
 
     newGame() {
+        this.settings = { arcadeMode: false, level: 0 };
         localStorage.clear();
         let colorPair = this.createColorPair();
         colorPair = colorPair.concat(colorPair);
@@ -93,14 +97,15 @@ const engine = {
     },
 
     arcade() {
-        if (this.level === 0) { localStorage.clear() };
+        if (this.settings.level === 0) { localStorage.clear() };
+        this.settings.arcadeMode = true;
         this.stateTemp = {};
-        this.arcadeMode = true;
-        this.cardsAmount = 8+this.level*8;
+        this.cardsAmount = 8+this.settings.level*8;
         let colorPair = this.createColorPair();
         colorPair = colorPair.concat(colorPair);
         let colorPairShuffled = this.shuffleColors(colorPair);
         this.createCards(colorPairShuffled); 
+        this.tempUpdate();
     },
 
     checkWin(){
@@ -110,13 +115,12 @@ const engine = {
         }
         if (array.every(e => e === "clear")) {
             localStorage.clear();    
-            if (this.arcadeMode === false) {
+            if (this.settings.arcadeMode === false) {
                 setTimeout(() => window.location.reload(), 1000)    
             }
-            if(this.arcadeMode === true){
+            if(this.settings.arcadeMode === true){
                 setTimeout(() => {
-                    this.level++;
-                    this.stateTemp.level = this.level;
+                    this.settings.level++;
                     this.gameBox.innerHTML = "";
                     this.arcade();
                 },1200) 
