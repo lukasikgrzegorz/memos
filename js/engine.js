@@ -68,11 +68,10 @@ const engine = {
     },
 
     continueGame(){ 
-        if (this.stateTemp.arcade) {
-            this.arcade = true;
-            this.level = this.stateTemp.level;
+        if (this.settings.arcadeMode) {
+            this.cardsAmount+=this.settings.level*8
         }
-        
+
         for (i = 0; i < this.cardsAmount; i++){
             const newCard = document.createElement("div");
             newCard.classList.add("card");
@@ -100,7 +99,7 @@ const engine = {
         if (this.settings.level === 0) { localStorage.clear() };
         this.settings.arcadeMode = true;
         this.stateTemp = {};
-        this.cardsAmount = 8+this.settings.level*8;
+        this.cardsAmount = 16+this.settings.level*8;
         let colorPair = this.createColorPair();
         colorPair = colorPair.concat(colorPair);
         let colorPairShuffled = this.shuffleColors(colorPair);
