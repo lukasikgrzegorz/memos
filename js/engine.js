@@ -95,8 +95,9 @@ const engine = {
         }
     },
 
-    arcade() {
-        if (this.settings.level === 0) { localStorage.clear() };
+    arcade(isNew) {
+        if(isNew){this.settings.level === 0}
+        // if (this.settings.level === 0) { localStorage.clear() };
         this.settings.arcadeMode = true;
         this.stateTemp = {};
         this.cardsAmount = 16+this.settings.level*8;

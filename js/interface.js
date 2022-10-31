@@ -17,5 +17,5 @@ interface.continueBtn.addEventListener('click', ()=> {
 
 interface.arcadeBtn.addEventListener('click', ()=> {
     interface.startScreen.classList.add("no-display"); 
-    engine.arcade();
+    engine.arcade(true);
 })
