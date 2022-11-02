@@ -69,10 +69,11 @@ const engine = {
 
     continueGame(){ 
         if (this.settings.arcadeMode) {
-            this.cardsAmount+=this.settings.level*8
+            this.cardsAmount += 2 * this.settings.level;
         }
 
         for (i = 0; i < this.cardsAmount; i++){
+            console.log(i);
             const newCard = document.createElement("div");
             newCard.classList.add("card");
             newCard.id = `card-${i}`;
@@ -96,8 +97,10 @@ const engine = {
     },
 
     arcade(isNew) {
-        if(isNew){this.settings.level === 0}
-        // if (this.settings.level === 0) { localStorage.clear() };
+        if(isNew){
+            this.settings = { arcadeMode: false, level: 0 };
+            localStorage.clear();
+        }
         this.settings.arcadeMode = true;
         this.stateTemp = {};
         this.cardsAmount = 16+this.settings.level*8;
