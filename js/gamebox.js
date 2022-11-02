@@ -1,23 +1,23 @@
 const result = {
-    hit(el1,el2,t){
+    hit(el1, el2, t) {
+        engine.stateTemp[`${item1.id}`].status = "clear";
+        engine.stateTemp[`${item2.id}`].status = "clear";
+        engine.tempUpdate();
+        engine.moveCounter = 0;
+        engine.chosenCard = [];
+        engine.checkWin();
         setTimeout(() => {
-            engine.stateTemp[`${item1.id}`].status = "clear";
-            engine.stateTemp[`${item2.id}`].status = "clear";
-            engine.tempUpdate();
-            engine.moveCounter = 0;
-            engine.chosenCard = [];
-            engine.checkWin();
             el1.classList.add("no-visible");
             el2.classList.add("no-visible");
         }, t)  
     },
-    miss(el1,el2,t) {
+    miss(el1, el2, t) {
+        engine.stateTemp[`${item1.id}`].status = "back";
+        engine.stateTemp[`${item2.id}`].status = "back"; 
+        engine.tempUpdate();
+        engine.moveCounter = 0;
+        engine.chosenCard = []; 
         setTimeout(() => {
-            engine.stateTemp[`${item1.id}`].status = "back";
-            engine.stateTemp[`${item2.id}`].status = "back"; 
-            engine.tempUpdate();
-            engine.moveCounter = 0;
-            engine.chosenCard = []; 
             el1.classList.toggle("flip");
             el1.firstElementChild.classList.toggle("flip");
             el2.classList.toggle("flip");
