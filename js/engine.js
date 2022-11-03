@@ -69,7 +69,7 @@ const engine = {
 
     continueGame(){ 
         if (this.settings.arcadeMode) {
-            this.cardsAmount += 2 * this.settings.level;
+            this.cardsAmount += 8 * this.settings.level;
         }
 
         for (i = 0; i < this.cardsAmount; i++){
