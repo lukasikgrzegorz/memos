@@ -9,6 +9,7 @@ engine = {
 		level : 0,
     quickMode: false,
     clickedCards: [],
+    cardsToFlip: [],
 	},
 
 	//Cards methods
@@ -76,15 +77,18 @@ engine = {
     },400)  
   },
 
-  resultMiss(){
-    setTimeout(() => {
-      card1.classList.toggle("flip");
-      card1.firstElementChild.classList.toggle("flip");
-      card2.classList.toggle("flip");
-      card2.firstElementChild.classList.toggle("flip");
-      engine.params.cards[Number(card1.dataset.index)].state = "back";
-      engine.params.cards[Number(card2.dataset.index)].state = "back";
-      this.params.clickedCards = [];
+  resultMiss() {
+    this.params.cardsToFlip.push(card1, card2);
+    engine.params.cards[Number(card1.dataset.index)].state = "back";
+    engine.params.cards[Number(card2.dataset.index)].state = "back";
+    this.params.clickedCards = [];
+    
+    setTimeout(() => {  
+      this.params.cardsToFlip[0].classList.toggle("flip");
+      this.params.cardsToFlip[0].firstElementChild.classList.toggle("flip");
+      this.params.cardsToFlip[1].classList.toggle("flip");
+      this.params.cardsToFlip[1].firstElementChild.classList.toggle("flip");
+      this.params.cardsToFlip.splice(0, 2); 
     },800)  
   },
   
@@ -96,7 +100,7 @@ engine = {
     if (winStatus && !this.params.quickMode) {
       this.params.cards = [];
       this.params.level++;
-      this.newGame(false);
+      setTimeout(this.newGame(false),1200);
     }
     if (winStatus && this.params.quickMode){
       localStorage.clear();
@@ -115,7 +119,5 @@ engine = {
   },
 
 }
-
-
 
 gameField.addEventListener("click", engine.checkPairs)
