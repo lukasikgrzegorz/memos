@@ -1,9 +1,3 @@
-$card-in-row-sm: 4;
-$card-in-row-dt: 6;
-$card-gap: 10px;
-
-
-
 *{
     margin: 0;
     padding: 0;
@@ -133,7 +127,7 @@ button{
 
 .gamebox{
     margin: auto;
-    gap: $card-gap;
+    gap: 10px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -153,13 +147,14 @@ button{
 
 
 .card{
-    flex-basis: calc((100% - (($card-in-row-sm - 1 ) * $card-gap))/$card-in-row-sm);  
+    
+    flex-basis: calc((100% - ((var(--row-vertical) - 1 ) * 10px))/var(--row-vertical));  
     perspective: 1000px;  
     transition: opacity 1000ms;
 
     @media screen and (min-width: 768px) {
         &{
-            flex-basis: calc((100% - (($card-in-row-dt - 1) * $card-gap))/$card-in-row-dt);
+            flex-basis: calc((100% - ((var(--row-horizontal) - 1) * 10px))/var(--row-horizontal));
         }
     }
 

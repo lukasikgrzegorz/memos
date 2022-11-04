@@ -170,8 +170,8 @@ button:disabled {
 }
 
 .card {
-  -ms-flex-preferred-size: calc((100% - 30px) / 4);
-      flex-basis: calc((100% - 30px) / 4);
+  -ms-flex-preferred-size: calc((100% - (var(--row-vertical) - 1) * 10px) / var(--row-vertical));
+      flex-basis: calc((100% - (var(--row-vertical) - 1) * 10px) / var(--row-vertical));
   -webkit-perspective: 1000px;
           perspective: 1000px;
   -webkit-transition: opacity 1000ms;
@@ -179,8 +179,8 @@ button:disabled {
 }
 @media screen and (min-width: 768px) {
   .card {
-    -ms-flex-preferred-size: calc((100% - 50px) / 6);
-        flex-basis: calc((100% - 50px) / 6);
+    -ms-flex-preferred-size: calc((100% - (var(--row-horizontal) - 1) * 10px) / var(--row-horizontal));
+        flex-basis: calc((100% - (var(--row-horizontal) - 1) * 10px) / var(--row-horizontal));
   }
 }
 .card:hover .card__back, .card:focus .card__back {
