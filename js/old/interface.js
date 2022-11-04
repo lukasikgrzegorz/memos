@@ -1,8 +1,9 @@
 const interface = {
-    startBtn: document.querySelector("[js-start-game]"),
     startScreen: document.querySelector("[js-start-screen]"),
+    newBtn: document.querySelector("[js-start-new]"),
+    quickBtn: document.querySelector("[js-start-quick]"),
     continueBtn: document.querySelector("[js-continue-game]"),
-    arcadeBtn: document.querySelector("[js-start-arcade]"),
+    
 
     checkTemp() {
         localStorage.getItem("gameParams") ? this.continueBtn.removeAttribute("disabled") : "";
@@ -11,7 +12,12 @@ const interface = {
 
 interface.checkTemp();
 
-interface.startBtn.addEventListener('click', () => {
+interface.newBtn.addEventListener('click', ()=> {
+    interface.startScreen.classList.add("no-display"); 
+    engine.newGame(false);
+})
+
+interface.quickBtn.addEventListener('click', () => {
     interface.startScreen.classList.add("no-display");  
     engine.newGame(true);
 })
@@ -19,9 +25,4 @@ interface.startBtn.addEventListener('click', () => {
 interface.continueBtn.addEventListener('click', ()=> {
     interface.startScreen.classList.add("no-display"); 
     engine.continueGame();
-})
-
-interface.arcadeBtn.addEventListener('click', ()=> {
-    interface.startScreen.classList.add("no-display"); 
-    engine.newGame(false);
 })
