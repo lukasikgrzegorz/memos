@@ -4,7 +4,6 @@ const interface = {
     quickBtn: document.querySelector("[js-start-quick]"),
     continueBtn: document.querySelector("[js-continue-game]"),
     
-
     checkTemp() {
         localStorage.getItem("gameParams") ? this.continueBtn.removeAttribute("disabled") : "";
     }

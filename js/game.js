@@ -10,7 +10,16 @@ engine = {
     quickMode: false,
     clickedCards: [],
     cardsToFlip: [],
-	},
+  },
+  
+  setCardsAmountPerRow(){
+    const BASE_VERTICAL = 4;
+    const BASE_HORIZONTAL = 6;
+    let extraCards = 0;
+    extraCards = Math.floor((this.params.level+1)/3)*2;
+    document.body.style.setProperty('--row-vertical', `${BASE_VERTICAL + extraCards}`);
+    document.body.style.setProperty('--row-horizontal', `${BASE_HORIZONTAL +extraCards}`);  
+  },
 
 	//Cards methods
   createCards() {
@@ -23,7 +32,8 @@ engine = {
     this.params.cards = colors.map((card) => ({ color: card, state: "back" })); //Create array of objects
 	},
 
-	renderCards(){
+  renderCards() {
+    this.setCardsAmountPerRow();
     let markup = this.params.cards.map((card, index) => {
       let isVisible = card.state === "clear" ? "no-visible" : "";
       return `<div class="card ${isVisible}" data-color="${card.color}" data-index="${index}">
