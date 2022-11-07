@@ -1,7 +1,7 @@
 const gameField = document.querySelector("[js-game-field]");
 
 engine = {
-	
+
   params: {   
 		START_AMOUNT : 16,
 		INCREMENT_VALUE : 8,
@@ -11,14 +11,14 @@ engine = {
     clickedCards: [],
     cardsToFlip: [],
   },
-  
+
   setCardsAmountPerRow(){
     const BASE_VERTICAL = 4;
     const BASE_HORIZONTAL = 6;
     let extraCards = 0;
     extraCards = Math.floor((this.params.level+1)/3)*2;
     document.body.style.setProperty('--row-vertical', `${BASE_VERTICAL + extraCards}`);
-    document.body.style.setProperty('--row-horizontal', `${BASE_HORIZONTAL +extraCards}`);  
+    document.body.style.setProperty('--row-horizontal', `${BASE_HORIZONTAL + extraCards}`);
   },
 
 	//Cards methods
@@ -48,7 +48,7 @@ engine = {
 
 	//Game methods
   newGame(isQuick) {
-    isQuick ? engine.params.quickMode = true : engine.params.quickMode = false;
+    isQuick ? this.params.quickMode = true : this.params.quickMode = false;
 		this.createCards();
     this.renderCards();
     this.setTemp();
@@ -60,21 +60,21 @@ engine = {
   },
   
   checkPairs(e) {
-    if (e.target.classList.contains("card") && engine.params.clickedCards.length<2 ){
+    if (e.target.classList.contains("card") && this.params.clickedCards.length<2 ){
       e.target.classList.toggle("flip");
       e.target.firstElementChild.classList.toggle("flip");
-      engine.params.clickedCards.push(e.target.dataset.index);
-      engine.params.cards[Number(e.target.dataset.index)].state = "front";
-      if (engine.params.clickedCards.length === 2) {
-        card1 = document.querySelector(`[data-index="${engine.params.clickedCards[0]}"]`);
-        card2 = document.querySelector(`[data-index="${engine.params.clickedCards[1]}"]`);
+      this.params.clickedCards.push(e.target.dataset.index);
+      this.params.cards[Number(e.target.dataset.index)].state = "front";
+      if (this.params.clickedCards.length === 2) {
+        card1 = document.querySelector(`[data-index="${this.params.clickedCards[0]}"]`);
+        card2 = document.querySelector(`[data-index="${this.params.clickedCards[1]}"]`);
         const sameIndex = card1.dataset.index === card2.dataset.index;
         const sameColor = card1.dataset.color === card2.dataset.color;
-        sameColor && !sameIndex ? engine.resultHit() : engine.resultMiss();
+        sameColor && !sameIndex ? this.resultHit() : this.resultMiss();
       }
     }
   },
-
+  
   resultHit(){
     setTimeout(() => {
       card1.classList.add("no-visible");
@@ -128,6 +128,11 @@ engine = {
     this.params = JSON.parse(localStorage.getItem("gameParams"));  
   },
 
+  //Event listener
+
+  createListener() {
+    gameField.addEventListener("click", this.checkPairs.bind(this));
+  }
 }
 
-gameField.addEventListener("click", engine.checkPairs)
+engine.createListener();
