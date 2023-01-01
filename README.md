@@ -5,6 +5,7 @@ Training game created in pure JS. How far will you go? :)
 
 https://lukasikgrzegorz.github.io/memos
 
+
 ## 🚀 Run Locally
 
 Clone the project
